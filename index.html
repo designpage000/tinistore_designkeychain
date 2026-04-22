@@ -52,12 +52,19 @@
     const canvas = new fabric.Canvas('c');
 
     // khung móc khóa
-   fabric.Image.fromURL('tuizip.png', function(frameImg) { 
-     frameImg.set(
-       { left: 50, top: 50, scaleX: 0.5, scaleY: 0.5, 
-        selectable: false, // không cho di chuyển 
-        evented: false // không click được 
-        });
+  fabric.Image.fromURL('tuizip.png', function(frameImg) { 
+  frameImg.set({
+    left: 50,
+    top: 50,
+    scaleX: 0.5,
+    scaleY: 0.5,
+    selectable: false,
+    evented: false
+  });
+
+  canvas.add(frameImg);     
+  canvas.sendToBack(frameImg);
+}); 
 
     function addSticker(img) {
       fabric.Image.fromURL(img.src, function(oImg) {
