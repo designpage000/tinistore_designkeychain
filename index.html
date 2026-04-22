@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Keychain Designer</title>
 
-  <!-- Import Fabric.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
 
   <style>
@@ -35,11 +34,9 @@
 
   <h2>Design your keychain 🎀</h2>
 
-  <!-- Sticker list -->
+  <!-- Sticker -->
   <div>
-    <img src="https://i.imgur.com/1.png" onclick="addSticker(this)">
-    <img src="https://i.imgur.com/2.png" onclick="addSticker(this)">
-    <img src="https://i.imgur.com/3.png" onclick="addSticker(this)">
+    <img src="https://i.imgur.com/6X4K7kF.png" onclick="addSticker(this)">
   </div>
 
   <!-- Canvas -->
@@ -47,12 +44,24 @@
 
   <br>
 
-  <button onclick="download()">Download Design</button>
+  <button onclick="download()">Download</button>
+  <button onclick="deleteObject()">Delete</button>
 
   <script>
     const canvas = new fabric.Canvas('c');
 
-    // Thêm sticker
+    // khung móc khóa
+    const rect = new fabric.Rect({
+      left: 50,
+      top: 50,
+      width: 400,
+      height: 400,
+      fill: 'transparent',
+      stroke: 'pink',
+      selectable: false
+    });
+    canvas.add(rect);
+
     function addSticker(img) {
       fabric.Image.fromURL(img.src, function(oImg) {
         oImg.set({
@@ -65,7 +74,6 @@
       });
     }
 
-    // Download ảnh
     function download() {
       const dataURL = canvas.toDataURL({
         format: 'png',
@@ -77,29 +85,13 @@
       link.download = 'design.png';
       link.click();
     }
-// thêm nút xóa
-function deleteObject() {
-  const obj = canvas.getActiveObject();
-  if (obj) {
-    canvas.remove(obj);
-  }
-}
-<button onclick="deleteObject()">Delete</button>
 
-// thêm khung móc khóa
-const rect = new fabric.Rect({
-  left: 50,
-  top: 50,
-  width: 400,
-  height: 400,
-  fill: 'transparent',
-  stroke: 'pink',
-  selectable: false
-});
-
-canvas.add(rect);
-
-
+    function deleteObject() {
+      const obj = canvas.getActiveObject();
+      if (obj) {
+        canvas.remove(obj);
+      }
+    }
   </script>
 
 </body>
