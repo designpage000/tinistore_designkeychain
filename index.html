@@ -36,7 +36,8 @@
 
   <!-- Sticker -->
   <div>
-    <img src="https://i.imgur.com/6X4K7kF.png" onclick="addSticker(this)">
+    <img src="angrykitty.jpg" onclick="addSticker(this)">
+<img src="tamagochi.jpg" onclick="addSticker(this)">
   </div>
 
   <!-- Canvas -->
@@ -51,16 +52,12 @@
     const canvas = new fabric.Canvas('c');
 
     // khung móc khóa
-    const rect = new fabric.Rect({
-      left: 50,
-      top: 50,
-      width: 400,
-      height: 400,
-      fill: 'transparent',
-      stroke: 'pink',
-      selectable: false
-    });
-    canvas.add(rect);
+   fabric.Image.fromURL('tuizip.png', function(frameImg) { 
+     frameImg.set(
+       { left: 50, top: 50, scaleX: 0.5, scaleY: 0.5, 
+        selectable: false, // không cho di chuyển 
+        evented: false // không click được 
+        });
 
     function addSticker(img) {
       fabric.Image.fromURL(img.src, function(oImg) {
